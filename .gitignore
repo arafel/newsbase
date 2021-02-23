@@ -1,2 +1,4 @@
-/envdir/
+pycode/envdir/**
+Session.vim
 *~
+cache
