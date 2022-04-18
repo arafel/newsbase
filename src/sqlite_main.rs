@@ -14,9 +14,9 @@ fn main() -> Result<()> {
 
     println!("Create table");
     conn.execute(
-        "CREATE TABLE group (
+        "CREATE TABLE IF NOT EXISTS newsgroups (
             id    INTEGER PRIMARY KEY,
-            name  TEXT NOT NULL,
+            name  TEXT NOT NULL UNIQUE,
             low   INTEGER NOT NULL,
             high  INTEGER NOT NULL
         )",
@@ -30,10 +30,10 @@ fn main() -> Result<()> {
         high: 42,
     };
     println!("Insert group");
-    conn.execute("INSERT INTO group (name, low, high) VALUES (?1, ?2, ?3)",
+    conn.execute("INSERT INTO newsgroups (name, low, high) VALUES (?1, ?2, ?3)",
                  params![group.name, group.low, group.high])?;
 
-    let mut stmt = conn.prepare("SELECT id, name, data FROM group")?;
+    let mut stmt = conn.prepare("SELECT id, name, low, high FROM newsgroups")?;
     println!("Query for groups");
     let group_iter = stmt.query_map([], |row| {
         Ok(Group {

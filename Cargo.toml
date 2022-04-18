@@ -10,3 +10,6 @@ edition = "2018"
 cursive = "0.16"
 nntp = "0.0.5"
 rusqlite = { version = "0.27.0", features = ["bundled"] }
+diesel = { version = "1.4.8", features = ["postgres"] }
+dotenv = "0.15.0"
+

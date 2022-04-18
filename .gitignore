@@ -2,4 +2,4 @@ pycode/envdir/**
 Session.vim
 *~
 cache
-/test.db
+target/
