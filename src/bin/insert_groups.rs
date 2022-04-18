@@ -1,5 +1,5 @@
 use nntp::NNTPStream;
-extern crate newsbase;
+
 extern crate diesel;
 
 use newsbase::*;
@@ -7,7 +7,7 @@ use newsbase::*;
 fn main() {
     let db_connection = establish_connection();
 
-        let mut nntp_stream = match NNTPStream::connect(("nntp.aioe.org", 119)) {
+    let mut nntp_stream = match NNTPStream::connect(("nntp.aioe.org", 119)) {
         Ok(stream) => stream,
         Err(e) => std::panic::panic_any(e),
     };
@@ -29,7 +29,7 @@ fn main() {
                 counter += 1;
             }
             println!("100%");
-        },
+        }
         Err(e) => std::panic::panic_any(e)
     };
 
