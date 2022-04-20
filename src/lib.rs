@@ -34,3 +34,12 @@ pub fn create_newsgroup<'a>(conn: &PgConnection, name: &'a str, low: &'a i32, hi
         .get_result(conn)
         .expect("Error saving new newsgroup")
 }
+
+pub fn find_newsgroup(conn: &PgConnection, search_name: &str) -> Newsgroup {
+    use schema::newsgroups::dsl::*;
+
+    println!("Looking for {}", search_name);
+    newsgroups.filter(name.like(search_name))
+        .first(conn)
+        .expect("No newsgroup found")
+}
