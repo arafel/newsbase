@@ -7,6 +7,7 @@ use diesel::pg::PgConnection;
 use dotenv::dotenv;
 use std::env;
 use crate::models::{NewNewsgroup, Newsgroup};
+use crate::models::{NewArticle, Article};
 
 pub mod schema;
 pub mod models;
@@ -24,15 +25,37 @@ pub fn create_newsgroup<'a>(conn: &PgConnection, name: &'a str, low: &'a i32, hi
     use schema::newsgroups;
 
     let new_newsgroup = NewNewsgroup {
-        name: name,
-        low: low,
-        high: high
+        name,
+        low,
+        high
     };
 
     diesel::insert_into(newsgroups::table)
         .values(&new_newsgroup)
         .get_result(conn)
         .expect("Error saving new newsgroup")
+}
+
+pub fn create_article<'a>(conn: &PgConnection,
+                          server_id: &'a i32,
+                          author: &'a str,
+                          newsgroup_id: &'a i32,
+                          subject: &'a str,
+                          date_sent: &'a str) -> Article {
+    use schema::articles;
+
+    let new_article = NewArticle {
+        newsgroup_id,
+        server_id,
+        author,
+        subject,
+        date_sent
+    };
+
+    diesel::insert_into(articles::table)
+        .values(&new_article)
+        .get_result(conn)
+        .expect("Error saving new article")
 }
 
 pub fn find_newsgroup(conn: &PgConnection, search_name: &str) -> Newsgroup {
