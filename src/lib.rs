@@ -21,13 +21,14 @@ pub fn establish_connection() -> PgConnection {
         .expect(&format!("Error connecting to {}", database_url))
 }
 
-pub fn create_newsgroup<'a>(conn: &PgConnection, name: &'a str, low: &'a i32, high: &'a i32) -> Newsgroup {
+pub fn create_newsgroup<'a>(conn: &PgConnection, name: &'a str, low: &'a i32, high: &'a i32, last_high: &'a i32) -> Newsgroup {
     use schema::newsgroups;
 
     let new_newsgroup = NewNewsgroup {
         name,
         low,
-        high
+        high,
+        last_high
     };
 
     diesel::insert_into(newsgroups::table)

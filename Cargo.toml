@@ -3,6 +3,7 @@ name = "newsbase"
 version = "0.0.1"
 authors = ["Paul Walker <paul@solarwinter.net>"]
 edition = "2018"
+default-run = "newsbase"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -13,3 +14,4 @@ diesel = { version = "1.4.8", features = ["postgres", "chrono"] }
 chrono = "0.4.19"
 dotenv = "0.15.0"
 substring = "1.4.5"
+clap = { version = "3.1.12", features = ["color", "derive", "env"] }

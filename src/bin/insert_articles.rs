@@ -13,7 +13,7 @@ fn main() {
     };
 
     let group = find_newsgroup(&db_connection, "alt.sysadmin.recovery");
-    println!("Found {} ({}/{})", group.name, group.low, group.high);
+    println!("Found {} ({}/{}/{})", group.name, group.low, group.high, group.last_high);
 
     match nntp_stream.group(&group.name.to_string()) {
         Ok(_) => println!("Selected group"),

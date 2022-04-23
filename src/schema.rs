@@ -15,6 +15,7 @@ table! {
         name -> Text,
         low -> Int4,
         high -> Int4,
+        last_high -> Int4,
     }
 }
 

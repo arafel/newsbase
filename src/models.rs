@@ -7,13 +7,16 @@ pub struct NewNewsgroup<'a> {
     pub name: &'a str,
     pub low: &'a i32,
     pub high: &'a i32,
+    // Defaults to 0 but I guess we have to keep it so columns align with code.
+    pub last_high: &'a i32
 }
 #[derive(Queryable, Debug)]
 pub struct Newsgroup {
     pub id: i32,
     pub name: String,
     pub low: i32,
-    pub high: i32
+    pub high: i32,
+    pub last_high: i32
 }
 
 #[derive(Queryable, Debug)]

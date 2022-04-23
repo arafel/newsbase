@@ -14,6 +14,6 @@ fn main() {
     let low = 0;
     let high = 100;
 
-    let group = create_newsgroup(&connection, name, &low, &high);
+    let group = create_newsgroup(&connection, name, &low, &high, &0);
     println!("\nSaved newsgroup {} with id {}", name, group.id);
 }

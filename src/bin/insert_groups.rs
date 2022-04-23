@@ -19,10 +19,11 @@ fn main() {
             for group in groups.iter() {
                 // println!("Name: {}, High: {}, Low: {}, Status: {}", group.name, group.high, group.low, group.status);
 
-                let _newgroup = create_newsgroup(&db_connection,
+                let _ = create_newsgroup(&db_connection,
                                                  &group.name.to_string(),
                                                  &(group.low as i32),
-                                                 &(group.high as i32));
+                                                 &(group.high as i32),
+                                            &0);
                 // println!("Saved newsgroup {}", newgroup.name);
                 if (counter % step) == 0 {
                     println!("{}0%", counter / step);
